@@ -1,0 +1,1 @@
+// init hive, logic cơ bản
