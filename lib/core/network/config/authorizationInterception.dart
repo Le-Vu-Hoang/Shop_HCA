@@ -1,0 +1,18 @@
+import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+import '../../injection/injection_container.dart';
+
+class AuthorizationInterception extends Interceptor {
+  @override
+  void onRequest(RequestOptions options,
+      RequestInterceptorHandler handler) async {
+    final token = sl<FlutterSecureStorage>().read(key: 'token');
+
+    if (token != null) {
+      options.headers['Authorization'] = 'Bearer $token';
+    }
+
+    handler.next(options);
+  }
+}

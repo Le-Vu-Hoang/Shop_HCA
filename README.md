@@ -15,6 +15,9 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+
+## folder structure
+```
 lib/
 ├── core/                 # Các lớp và tiện ích dùng chung toàn app
 │   ├── constants/        # Giá trị cố định: URL API, màu, padding...
@@ -41,3 +44,38 @@ lib/
 ├── injection/            # Quản lý dependency (GetIt hoặc provider injection)
 │
 └── main.dart             # Entry point app (gọi App(), inject, runApp)
+
+```
+## Usecase
+```
+    #Auth
+    - SignIn
+    - SignUp
+    - SignOut
+    - ForgotPassword
+    - ChangePassword
+    - CheckAuth
+    
+    #Product
+    - GetProductList
+    - GetProductDetail
+    - SearchProduct
+    - FilterProduct
+    
+    #Cart
+    - GetCartItems
+    - AddToCart
+    - RemoveFromCart
+    
+    #Order
+    - CreateOrder
+    - GetOrderList
+    - GetOrderDetail
+    - CancelOrder
+    - GetOrderByStatus
+    - GetOrderHistory
+    
+    #User
+    - GetUserProfile
+    - UpdateUserProfile
+```
