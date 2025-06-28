@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
-import '../../domain/repositories/auth_repository.dart';
-import '../../injection/injection_container.dart';
+import '../../../domain/repositories/auth_repository.dart';
+import '../../../injection/injection_container.dart';
 import 'dio_client.dart';
 
 class LoggerInterceptor extends Interceptor {

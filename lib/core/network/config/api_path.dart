@@ -4,6 +4,7 @@ class ApiPaths {
   static const product = _ProductPaths();
   static const order = _OrderPaths();
   static const brand = _BrandPaths();
+  static const subCategory = _SubCategoryPaths();
 }
 
 class _AuthPaths {
@@ -11,9 +12,9 @@ class _AuthPaths {
 
   String get login => '/api/public/user-login';
   String get register => '/api/public/create-user';
-  String getUserInfor(String id) => '/api/user/get-user-by-id/$id';
-  String updateUser(String id) => '/api/user/update-user-info/$id';
-  String changePassword(String id) => '/api/user/change-password/$id';
+  String get getUserInfor => '/api/user/get-user-by-id';
+  String get updateUser => '/api/user/update-user-info';
+  String get changePassword => '/api/user/change-password';
   String get refreshToken => '/api/auth/refresh';
 }
 
