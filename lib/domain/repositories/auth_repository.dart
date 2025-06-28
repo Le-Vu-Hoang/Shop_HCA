@@ -1,16 +1,22 @@
 import 'package:dartz/dartz.dart';
+import 'package:e_commercial/data/models/auth/change_password_req.dart';
+import 'package:e_commercial/domain/entities/auth.dart';
 
 import '../../core/errors/failure.dart';
+import '../../data/models/auth/signin_req.dart';
+import '../../data/models/auth/signup_req.dart';
+import '../../data/models/user/user_model.dart';
+import '../entities/user.dart';
 
 abstract class AuthRepository {
-  // Future<void> signup(SignUpParams params);
-  // Future<void> signin(SignInParams params);
+  Future<Either<Failure,AuthEntity>> signUp(SignUpReqParams params);
+  Future<Either<Failure,AuthEntity>> signIn(SignInReqParams params);
   Future<bool> isLoggedIn();
-  Future<Either<Failure, void>> logout();
+  Future<Either<Failure, UserEntity>> getUserInfo();
+  Future<Either<Failure, String>> changePassword(ChangePasswordReq params);
+  Future<Either<Failure, String>> updateUser(UserModel userModel);
   Future<Either<Failure, String>> refreshToken();
-  // Future<Either<Failure, UserModel>> getUserInfo();
-  Future<Either<Failure, void>> changePassword(String String);
-  Future<Either<Failure,void>> forgotPassword(String);
-  Future<Either<Failure, void>> signInWithGoogle(String);
-  // Future<Either<Failure, void>> updateProfile(UserProfileParams params)
+  // Future<Either<Failure,void>> forgotPassword(String);
+  // Future<Either<Failure, void>> signInWithGoogle(String);
+  // Future<Either<Failure, String>> logout();
 }
