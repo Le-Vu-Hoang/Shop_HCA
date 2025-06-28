@@ -1,30 +1,37 @@
-import 'dart:async';
+import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:get/get.dart';
+import '../../models/auth/auth_model.dart';
 
 class AuthStorageService {
-  final _storage = FlutterSecureStorage();
-  static const _authTokenKey = 'auth_token';
-  static const _authTokenRefreshKey = 'auth_token_refresh';
+  final FlutterSecureStorage _storage;
 
-  Future<void> saveToken(String token) async {
-    await _storage.write(key: _authTokenKey, value: token);
+  static const _authKey = 'user-auth';
+
+  AuthStorageService(this._storage);
+
+  Future<void> saveAuth(AuthModel model) async {
+    final json = jsonEncode(model.toJson());
+    await _storage.write(key: _authKey, value: json);
   }
 
-  Future<String?> getToken() async {
-    return await _storage.read(key: _authTokenKey);
+  Future<AuthModel?> readAuth() async {
+    final jsonString = await _storage.read(key: _authKey);
+    if (jsonString == null) return null;
+
+    try {
+      final map = jsonDecode(jsonString);
+      return AuthModel.fromJson(map);
+    } catch (_) {
+      return null;
+    }
   }
 
-  Future<void> deleteToken() async {
-    await _storage.delete(key: _authTokenKey);
+  Future<void> clearAuth() async {
+    await _storage.delete(key: _authKey);
   }
 
-  Future<void> saveRefreshToken(String refreshToken) async {
-    await _storage.write(key: _authTokenRefreshKey, value: refreshToken);
-  }
-
-  Future<bool> isLoggedIn() async {
-    final token = await getToken();
-    return token != null && token.isNotEmpty;
+  Future<String?> getAccessToken() async {
+    final model = await readAuth();
+    return model?.accessToken;
   }
 }
