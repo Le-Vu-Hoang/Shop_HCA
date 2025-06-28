@@ -1,5 +1,6 @@
 class ProductVariantEntity {
   final String id;
+  final String productId;
   final String name;
   final String sku;
   final int price;
@@ -9,6 +10,7 @@ class ProductVariantEntity {
 
   ProductVariantEntity({
     required this.id,
+    required this.productId,
     required this.name,
     required this.sku,
     required this.price,
