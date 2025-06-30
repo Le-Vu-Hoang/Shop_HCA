@@ -5,6 +5,8 @@ class ApiPaths {
   static const order = _OrderPaths();
   static const brand = _BrandPaths();
   static const subCategory = _SubCategoryPaths();
+  static const notification = _NotificationPaths();
+  static const address = _AddressPaths();
 }
 
 class _AuthPaths {
@@ -36,8 +38,10 @@ class _ProductPaths {
 class _OrderPaths {
   const _OrderPaths();
 
-  String get getAllOrders => '/api/public/get-all-orders';
-  String get getOrderById => '/api/public/get-order-by-id';
+  String get createOrder => '/api/user/create-new-order';
+  String get getAllOrders => '/api/user/get-all-orders';
+  String cancelOrder (String id ) => '/api/user/cancel-order/$id';
+  String getOrderDetail(String id) => '/api/user/get-order-detail/$id';
 }
 
 class _BrandPaths {
@@ -51,4 +55,19 @@ class _SubCategoryPaths {
 
   String getAllSubCategories(String categoryId) => '/api/public/get-all-sub-from-category/$categoryId';
   String getSubCategoryById(String id) => '/api/public/get-sub-category/$id';
+}
+
+class _NotificationPaths {
+  const _NotificationPaths();
+
+  String get getAllNotifications => '/api/user/get-all-notify-me';
+}
+
+class _AddressPaths {
+  const _AddressPaths();
+
+  String get getAllAddresses => '/api/user/get-all-address';
+  String get addAddress => '/api/user/add-shipping-address';
+  String get updateAddress => '/api/user/update-shipping-address';
+  String get deleteAddress => '/api/user/delete-address';
 }

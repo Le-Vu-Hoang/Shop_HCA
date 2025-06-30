@@ -11,6 +11,7 @@ extension ProductXModel on ProductModel {
         name: name,
         origin:  origin,
         averagePrice: averagePrice,
+        otherVariant: otherVariant,
         status: status,
         promotion: promotion,
         imageProducts: imageProducts,

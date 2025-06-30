@@ -6,6 +6,7 @@ class ProductModel {
   final String name;
   final String origin;
   final String averagePrice;
+  final bool otherVariant;
   final String status;
   final int promotion;
   final List<String> imageProducts;
@@ -18,6 +19,7 @@ class ProductModel {
     required this.name,
     required this.origin,
     required this.averagePrice,
+    required this.otherVariant,
     required this.status,
     required this.promotion,
     required this.imageProducts,
@@ -32,6 +34,7 @@ class ProductModel {
       name: json['name'] as String,
       origin: json['origin'] as String,
       averagePrice: json['average_price'] as String,
+      otherVariant: json['other_variant'] as bool? ?? false,
       status: json['status'] as String,
       promotion: json['promotion'] as int,
       imageProducts: List<String>.from(json['image_products'] as List<dynamic>),
@@ -47,6 +50,7 @@ class ProductModel {
       'name': name,
       'origin': origin,
       'average_price': averagePrice,
+      'other_variant': otherVariant,
       'status': status,
       'promotion': promotion,
       'image_products': imageProducts,

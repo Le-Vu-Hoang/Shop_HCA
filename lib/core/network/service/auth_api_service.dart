@@ -56,7 +56,10 @@ class AuthApiServiceImpl implements AuthApiService {
         ApiPaths.auth.register,
         data: params.toMap(),
       );
-      return Right(AuthModel.fromJson(response.data).toEntity());
+      AuthModel authModel = AuthModel.fromJson(response.data);
+      await sl<AuthStorageService>().saveAuth(authModel);
+
+      return Right(authModel.toEntity());
     } on DioException catch (e) {
       return Left(handleDioException(e, contextMessage: 'Sign up failed'));
     } catch (e) {
