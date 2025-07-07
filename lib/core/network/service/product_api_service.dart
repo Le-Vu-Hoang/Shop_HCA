@@ -14,7 +14,7 @@ import '../../errors/failure.dart';
 import '../config/api_path.dart';
 
 abstract class ProductApiService {
-  Future<Either<Failure, List<ProductEntity>>> getAllProducts();
+  Future<Either<Failure, List<ProductEntity>>> getAllProducts({int? page, int? limit});
 
   Future<Either<Failure, ProductEntity>> getProductById(String id);
 
@@ -26,10 +26,14 @@ abstract class ProductApiService {
 
 class ProductApiServiceImpl implements ProductApiService {
   @override
-  Future<Either<Failure, List<ProductEntity>>> getAllProducts() async {
+  Future<Either<Failure, List<ProductEntity>>> getAllProducts({int? page, int? limit}) async {
     try {
       var response = await sl<DioClient>().get(
         ApiPaths.product.getAllProducts,
+        queryParameters: {
+          if(page != null) 'page' : page,
+          if(limit != null) 'limit': limit,
+        }
       );
       List<ProductEntity> products = (response.data as List)
           .map((product) => ProductModel.fromJson(product).toEntity())

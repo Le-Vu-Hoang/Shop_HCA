@@ -10,8 +10,9 @@ class AuthStateCubit extends Cubit<AuthState> {
 
   final logger = sl<Logger>();
 
-  void appStarted() async {
+  Future<void> appStarted() async {
     var isLoggedIn = await sl<IsLoggedInUseCase>().call();
+    await Future.delayed(const Duration(seconds: 4));
     if(isLoggedIn) {
       logger.i("✅ Login succesful, emitting Authenticated");
       emit(Authenticated());

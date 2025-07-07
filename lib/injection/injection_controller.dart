@@ -1,7 +1,7 @@
 
 import 'package:get_it/get_it.dart';
 
-void setupController(GetIt sl) {
+Future <void> setupController(GetIt sl) async {
   // Add your controller setup code here
   // For example:
   // sl.registerFactory<YourController>(() => YourController(sl<YourService>()));

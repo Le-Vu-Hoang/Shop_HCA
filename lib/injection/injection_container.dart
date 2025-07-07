@@ -6,14 +6,16 @@ import 'package:get_it/get_it.dart';
 
 import 'injection_controller.dart';
 import 'injection_datasource.dart';
+import 'injection_usecase.dart';
 
 final sl = GetIt.instance;
 
 Future<void> initDependencies() async {
-  setupState(sl);
-  setupDependency(sl);
-  setupServices(sl);
-  setupDatasource(sl);
-  setupRepository(sl);
-  setupController(sl);
+  await setupDatasource(sl);
+  await setupDependency(sl);
+  await setupState(sl);
+  await setupServices(sl);
+  await setupRepository(sl);
+  await setupController(sl);
+  await setupUseCases(sl);
 }

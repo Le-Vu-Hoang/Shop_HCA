@@ -39,13 +39,6 @@ class _AnimatedLogoState extends State<AnimatedLogo>
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            blurRadius: 10.0,
-            offset: const Offset(0, 4), // changes position of shadow
-          ),
-        ],
       ),
       child: ScaleTransition(
         scale: _animation,

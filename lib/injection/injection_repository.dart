@@ -13,7 +13,7 @@ import 'package:get_it/get_it.dart';
 import '../data/repositories_impl/category_repository_impl.dart';
 import '../data/repositories_impl/product_repository_impl.dart';
 
-void setupRepository(GetIt sl) {
+Future<void> setupRepository(GetIt sl) async {
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
   sl.registerLazySingleton<CategoryRepository>(() => CategoryRepositoryImpl());
   sl.registerLazySingleton<SubCategoryRepository>(() => SubCategoryRepositoryImpl());

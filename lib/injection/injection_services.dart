@@ -8,12 +8,12 @@ import 'package:get_it/get_it.dart';
 
 import '../core/network/service/auth_api_service.dart';
 
-void setupServices(GetIt sl) {
-  sl.registerSingleton<DioClient>(DioClient());
-  sl.registerLazySingleton<AuthApiService>(() => AuthApiServiceImpl());
-  sl.registerLazySingleton<CategoryApiService>(() => CategoryApiServiceImpl());
-  sl.registerLazySingleton<ProductApiService>(() => ProductApiServiceImpl());
-  sl.registerLazySingleton<SubCategoryApiService>(() => SubCategoryApiServiceImpl());
-  sl.registerLazySingleton<OrderApiService>(() => OrderApiServiceImpl());
-  sl.registerLazySingleton<AddressApiService>(() => AddressApiServiceImpl());
+Future<void> setupServices(GetIt sl) async {
+   sl.registerSingleton<DioClient>(DioClient());
+   sl.registerLazySingleton<AuthApiService>(() => AuthApiServiceImpl());
+   sl.registerLazySingleton<CategoryApiService>(() => CategoryApiServiceImpl());
+   sl.registerLazySingleton<ProductApiService>(() => ProductApiServiceImpl());
+   sl.registerLazySingleton<SubCategoryApiService>(() => SubCategoryApiServiceImpl());
+   sl.registerLazySingleton<OrderApiService>(() => OrderApiServiceImpl());
+   sl.registerLazySingleton<AddressApiService>(() => AddressApiServiceImpl());
 }

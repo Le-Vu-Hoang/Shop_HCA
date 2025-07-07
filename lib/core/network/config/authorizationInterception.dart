@@ -8,7 +8,7 @@ class AuthorizationInterception extends Interceptor {
   @override
   void onRequest(RequestOptions options,
       RequestInterceptorHandler handler) async {
-    final token = sl<AuthStorageService>().getAccessToken();
+    final token = await sl<AuthStorageService>().getAccessToken();
 
     if (token != null) {
       options.headers['Authorization'] = 'Bearer $token';

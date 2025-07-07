@@ -14,8 +14,8 @@ class ProductRepositoryImpl implements ProductRepository{
   }
 
   @override
-  Future<Either<Failure, List<ProductEntity>>> getProducts() async {
-    return await sl<ProductApiService>().getAllProducts();
+  Future<Either<Failure, List<ProductEntity>>> getProducts({int? page, int? limit}) async {
+    return await sl<ProductApiService>().getAllProducts(page: page, limit: limit);
   }
 
   @override

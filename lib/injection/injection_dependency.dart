@@ -1,12 +1,10 @@
+import 'package:e_commercial/routes/app_router.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:logger/logger.dart';
 
-void setupDependency(GetIt sl) async {
-  await Hive.initFlutter();
-
+Future<void> setupDependency(GetIt sl) async {
   sl.registerLazySingleton(() => Logger());
-  sl.registerLazySingleton(() => FlutterSecureStorage());
-  sl.registerLazySingleton<HiveInterface>(() => Hive);
+  sl.registerSingleton<AppRouter>(AppRouter());
 }
