@@ -8,6 +8,7 @@ class ProductState extends Equatable {
   final int currentPage;
   final bool hasMore;
   final String? errorMessage;
+  final String? currentFilter;
 
   const ProductState({
     this.products = const [],
@@ -16,6 +17,7 @@ class ProductState extends Equatable {
     this.currentPage = 1,
     this.hasMore = true,
     this.errorMessage,
+    this.currentFilter,
 });
 
   ProductState copyWith({
@@ -25,6 +27,7 @@ class ProductState extends Equatable {
     int? currentPage,
     bool? hasMore,
     String? errorMessage,
+    String? currentFilter,
   }) {
     return ProductState(
       products: products ?? this.products,
@@ -33,10 +36,11 @@ class ProductState extends Equatable {
       currentPage: currentPage ?? this.currentPage,
       hasMore: hasMore ?? this.hasMore,
       errorMessage: errorMessage ?? this.errorMessage,
+      currentFilter: currentFilter ?? this.currentFilter,
     );
   }
 
   @override
-  List<Object?> get props => [products, isLoading, isLoadingMore, currentPage, hasMore];
+  List<Object?> get props => [products, isLoading, isLoadingMore, currentPage, hasMore, currentFilter,];
 
 }

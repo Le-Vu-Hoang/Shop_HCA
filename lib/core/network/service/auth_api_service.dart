@@ -26,7 +26,7 @@ abstract class AuthApiService {
 
   Future<Either<Failure, UserEntity>> getUserInfor();
 
-  Future<Either<Failure, String>> updateUser(UserModel userModel);
+  Future<Either<Failure, String>> updateUser(FormData formData);
 
   Future<Either<Failure, String>> changePassword(ChangePasswordReq params);
 // Future<Either<Failure, String>> refreshToken(String refreshToken);
@@ -98,12 +98,15 @@ class AuthApiServiceImpl implements AuthApiService {
   }
 
   @override
-  Future<Either<Failure, String>> updateUser(UserModel userModel) async {
+  Future<Either<Failure, String>> updateUser(FormData formData) async {
     try {
-      var response = await sl<DioClient>().put(
-        ApiPaths.auth.updateUser,
-        data: userModel.toJson(),
-      );
+      var response = await sl<DioClient>().put(ApiPaths.auth.updateUser,
+          data: formData,
+          options: Options(
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          ));
       return Right(response.data['message'] as String);
     } on DioException catch (e) {
       return Left(handleDioException(e, contextMessage: 'Update user failed'));

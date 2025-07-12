@@ -69,4 +69,36 @@ class LocalUserModel extends HiveObject {
       isLocked: user.isLocked,
     );
   }
+
+  UserModel toUserModel() {
+    return UserModel(
+      id: id,
+      fullName: fullName,
+      email: email,
+      birthday: birthday,
+      numberPhone: numberPhone,
+      accountName: accountName ,
+      isLocked: isLocked,
+    );
+  }
+
+  LocalUserModel copyWith({
+    String? fullName,
+    String? imageLink,
+    String? accountName,
+    String? email,
+    String? birthday,
+    String? numberPhone,
+  }) {
+    return LocalUserModel(
+      id: id,
+      imageLink: imageLink,
+      fullName: fullName ?? this.fullName,
+      accountName: accountName ?? this.accountName,
+      birthday: birthday ?? this.birthday,
+      email: email ?? this.email,
+      numberPhone: numberPhone ?? this.numberPhone,
+      isLocked: isLocked,
+    );
+  }
 }

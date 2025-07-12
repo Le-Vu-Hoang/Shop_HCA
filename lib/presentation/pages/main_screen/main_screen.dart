@@ -19,9 +19,9 @@ class _MainScreenState extends State<MainScreen> {
   int currentIndex = 0;
   final List<Widget> _pages = [
     const HomeScreen(),
-    const CartScreen(),
+    CartScreen(),
     const ChatScreen(),
-    const ProfileScreen(),
+    ProfileScreen(),
   ];
 
   @override

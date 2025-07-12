@@ -1,7 +1,6 @@
 import 'package:e_commercial/domain/entities/category.dart';
 import 'package:e_commercial/presentation/widgets/loading/app_loading.dart';
 import 'package:e_commercial/routes/app_router.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -11,6 +10,7 @@ import '../../../../injection/injection_container.dart';
 import '../../../../routes/app_router.gr.dart';
 import '../../../blocs/category/category_cubit.dart';
 import '../../../blocs/category/category_state.dart';
+import '../../product/product_screen.dart';
 
 
 class CategoryList extends StatelessWidget {
@@ -94,7 +94,9 @@ class CategoryList extends StatelessWidget {
           return Column(
             children: [
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  sl<AppRouter>().push(ProductRoute(categoryId: categories[index].id));
+                },
                 child: Container(
                   width: 50,
                   height: 50,

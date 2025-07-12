@@ -31,6 +31,7 @@ class _ProductPaths {
 
   String get getAllProducts => '/api/public/get-all-products';
   String getProductById(String id) => '/api/public/get-product-by-id/$id';
+  String get getAllProductWithFilter => '/api/public/get-all-products-by-filter/';
   String getVariantOfProduct(String id) => '/api/public/get-all-variants/$id';
   String getVariantById(String id) => '/api/public/get-variant-by-id/$id';
 }

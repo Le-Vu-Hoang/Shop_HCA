@@ -5,7 +5,7 @@ class ProductEntity {
   final String brandId;
   final String name;
   final String origin;
-  final String averagePrice;
+  final int averagePrice;
   final bool otherVariant;
   final String status;
   final int promotion;

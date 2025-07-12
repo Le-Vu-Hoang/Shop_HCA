@@ -1,11 +1,10 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:e_commercial/data/models/auth/change_password_req.dart';
 import 'package:e_commercial/domain/entities/auth.dart';
-
 import '../../core/errors/failure.dart';
 import '../../data/models/auth/signin_req.dart';
 import '../../data/models/auth/signup_req.dart';
-import '../../data/models/user/user_model.dart';
 import '../entities/user.dart';
 
 abstract class AuthRepository {
@@ -14,7 +13,7 @@ abstract class AuthRepository {
   Future<bool> isLoggedIn();
   Future<Either<Failure, UserEntity>> getUserInfo();
   Future<Either<Failure, String>> changePassword(ChangePasswordReq params);
-  Future<Either<Failure, String>> updateUser(UserModel userModel);
+  Future<Either<Failure, String>> updateUser(FormData formData);
   Future<Either<Failure, String>> refreshToken();
   // Future<Either<Failure,void>> forgotPassword(String);
   // Future<Either<Failure, void>> signInWithGoogle(String);

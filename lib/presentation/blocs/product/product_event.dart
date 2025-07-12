@@ -8,5 +8,13 @@ abstract class ProductEvent extends Equatable {
 }
 
 class FetchProducts extends ProductEvent {}
+class FetchProductsByFilter extends ProductEvent {
+  final String filter;
+
+  const FetchProductsByFilter(this.filter);
+
+  @override
+  List<Object?> get props => [filter];
+}
 
 class LoadMoreProducts extends ProductEvent{}

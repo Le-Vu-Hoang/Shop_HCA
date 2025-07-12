@@ -15,6 +15,7 @@ import '../domain/usecases/Order/cancel_order.dart';
 import '../domain/usecases/Order/create_order.dart';
 import '../domain/usecases/Order/get_all_order.dart';
 import '../domain/usecases/Product/get_all_product.dart';
+import '../domain/usecases/Product/get_all_product_by_filter.dart';
 import '../domain/usecases/Product/get_product_by_id.dart';
 import '../domain/usecases/Product/get_variant_by_id.dart';
 import '../domain/usecases/Product/get_variant_of_product.dart';
@@ -32,6 +33,7 @@ Future<void> setupUseCases(GetIt sl) async {
   sl.registerLazySingleton(() => SubGetAllByCateIdUSeCase());
   sl.registerLazySingleton(() => SubGetByIdUseCase());
   sl.registerLazySingleton(() => GetAllProductUseCase());
+  sl.registerLazySingleton(() => GetAllProductByFilter());
   sl.registerLazySingleton(() => GetProductByIdUseCase());
   sl.registerLazySingleton(() => GetVariantByIdUseCase());
   sl.registerLazySingleton(() => GetVariantOfProductUseCase());

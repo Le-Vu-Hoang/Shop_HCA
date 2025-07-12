@@ -5,7 +5,7 @@ class ProductModel {
   final String brandId;
   final String name;
   final String origin;
-  final String averagePrice;
+  final int averagePrice;
   final bool otherVariant;
   final String status;
   final int promotion;
@@ -33,11 +33,13 @@ class ProductModel {
       brandId: json['brand_id'] as String,
       name: json['name'] as String,
       origin: json['origin'] as String,
-      averagePrice: json['average_price'] as String,
+      averagePrice: int.tryParse(json['average_price'].toString()) ?? 0,
       otherVariant: json['other_variant'] as bool? ?? false,
       status: json['status'] as String,
-      promotion: json['promotion'] as int,
-      imageProducts: List<String>.from(json['image_products'] as List<dynamic>),
+      promotion: int.tryParse(json['promotion'].toString()) ?? 0,
+      imageProducts: (json['image_products'] as List)
+          .map((img) => img['image_link'].toString())
+          .toList(),
     );
   }
 
