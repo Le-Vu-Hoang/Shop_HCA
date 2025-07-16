@@ -2,6 +2,7 @@ import 'package:auto_route/annotations.dart';
 import 'package:e_commercial/core/constants/app_text_style.dart';
 import 'package:e_commercial/core/constants/app_themes.dart';
 import 'package:e_commercial/core/utils/format_currency.dart';
+import 'package:e_commercial/presentation/pages/product_detail/widget/variant_selector_widget.dart';
 import 'package:e_commercial/presentation/widgets/loading/app_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +10,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../blocs/product_detail/product_detail_cubit.dart';
 import '../../blocs/product_detail/product_detail_state.dart';
+
+enum VariantActionType { addCart, buyNow }
 
 @RoutePage()
 class ProductDetailScreen extends StatelessWidget {
@@ -18,14 +21,14 @@ class ProductDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppThemes.primaryColor,
-        iconTheme: const IconThemeData(color: Colors.white, size: 32),
-      ),
-      body: BlocProvider(
-        create: (context) => ProductDetailCubit(productId)..loadProduct(),
-        child: BlocListener<ProductDetailCubit, ProductDetailState>(
+    return BlocProvider(
+      create: (context) => ProductDetailCubit(productId)..loadProduct(),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppThemes.primaryColor,
+          iconTheme: const IconThemeData(color: Colors.white, size: 32),
+        ),
+        body: BlocListener<ProductDetailCubit, ProductDetailState>(
           listener: (context, state) {
             if (state is ProductDetailLoading) {
               AppLoading.show(context);
@@ -127,64 +130,96 @@ class ProductDetailScreen extends StatelessWidget {
             },
           ),
         ),
-      ),
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.all(0),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 8,
-              offset: Offset(0, -2),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: InkWell(
-                onTap: () {
-                  // TODO: Toggle yêu thích
-                },
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 18),
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      right: BorderSide(color: Colors.grey, width: 0.5),
+        bottomNavigationBar: BlocBuilder<ProductDetailCubit, ProductDetailState>(
+          builder: (context, state) {
+            if (state is! ProductDetailLoaded) return SizedBox.shrink();
+
+            final product = state.product;
+
+            return Container(
+              padding: const EdgeInsets.all(0),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 8,
+                    offset: Offset(0, -2),
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        // TODO: Toggle yêu thích
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 18),
+                        decoration: const BoxDecoration(
+                          border: Border(
+                            right: BorderSide(color: Colors.grey, width: 0.5),
+                          ),
+                        ),
+                        child: Icon(Icons.favorite_border, color: Color(0xFFDA5C9D), size: 28),
+                      ),
                     ),
                   ),
-                  child: Icon(Icons.favorite_border, color: Color(0xFFDA5C9D), size: 28),
-                ),
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF6C63FF),
+                        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                        padding: const EdgeInsets.symmetric(vertical: 22),
+                      ),
+                      onPressed: () {
+                        final productDetailCubit = context.read<ProductDetailCubit>();
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) {
+                            return BlocProvider.value(
+                              value: productDetailCubit,
+                              child: VariantSelectorWidget(
+                                product: product,
+                                actionType: VariantActionType.addCart,
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      child: const Icon(Icons.add_shopping_cart, color: Colors.white, size: 28),
+                    ),
+                  ),
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF1ABC9C),
+                        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                        padding: const EdgeInsets.symmetric(vertical: 22),
+                      ),
+                      onPressed: () {
+                        final productDetailCubit = context.read<ProductDetailCubit>();
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) {
+                            return BlocProvider.value(
+                              value: productDetailCubit,
+                              child: VariantSelectorWidget(
+                                product: product,
+                                actionType: VariantActionType.buyNow,
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      child: const Icon(Icons.shopping_bag, color: Colors.white, size: 28),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            Expanded(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF6C63FF),
-                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-                  padding: const EdgeInsets.symmetric(vertical: 22),
-                ),
-                onPressed: () {
-                  // TODO: Add to cart
-                },
-                child: const Icon(Icons.add_shopping_cart, color: Colors.white, size: 28),
-              ),
-            ),
-            Expanded(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF1ABC9C),
-                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-                  padding: const EdgeInsets.symmetric(vertical: 22),
-                ),
-                onPressed: () {
-                  // TODO: Buy now
-                },
-                child: const Icon(Icons.shopping_bag, color: Colors.white, size: 28),
-              ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

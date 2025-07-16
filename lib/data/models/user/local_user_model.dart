@@ -1,7 +1,8 @@
+import 'package:e_commercial/data/models/address/address_model.dart';
+import 'package:e_commercial/data/models/address/address_model_mapper.dart';
 import 'package:e_commercial/data/models/user/user_model.dart';
+import 'package:e_commercial/domain/entities/user.dart';
 import 'package:hive/hive.dart';
-
-import '../../../domain/entities/user.dart';
 
 part 'local_user_model.g.dart';
 
@@ -31,6 +32,9 @@ class LocalUserModel extends HiveObject {
   @HiveField(7)
   final bool isLocked;
 
+  @HiveField(8)
+  final List<AddressModel> addresses;
+
   LocalUserModel({
     required this.id,
     this.imageLink,
@@ -40,9 +44,9 @@ class LocalUserModel extends HiveObject {
     required this.email,
     this.numberPhone,
     required this.isLocked,
+    this.addresses = const [],
   });
 
-  /// Optional: convert from your API model
   factory LocalUserModel.fromUserModel(UserModel user) {
     return LocalUserModel(
       id: user.id,
@@ -53,10 +57,10 @@ class LocalUserModel extends HiveObject {
       email: user.email,
       numberPhone: user.numberPhone,
       isLocked: user.isLocked,
+      addresses: user.addresses.map((e) => AddressModel.fromEntity(e)).toList(),
     );
   }
 
-  /// Optional: convert from Entity to Model
   factory LocalUserModel.fromEntity(UserEntity user) {
     return LocalUserModel(
       id: user.id,
@@ -67,6 +71,7 @@ class LocalUserModel extends HiveObject {
       email: user.email,
       numberPhone: user.numberPhone,
       isLocked: user.isLocked,
+      addresses: user.addresses.map((e) => AddressModel.fromEntity(e)).toList(),
     );
   }
 
@@ -77,8 +82,10 @@ class LocalUserModel extends HiveObject {
       email: email,
       birthday: birthday,
       numberPhone: numberPhone,
-      accountName: accountName ,
+      accountName: accountName,
       isLocked: isLocked,
+      imageLink: imageLink,
+      addresses: addresses.map((e) => e.toEntity()).toList(),
     );
   }
 
@@ -89,16 +96,18 @@ class LocalUserModel extends HiveObject {
     String? email,
     String? birthday,
     String? numberPhone,
+    List<AddressModel>? addresses,
   }) {
     return LocalUserModel(
       id: id,
-      imageLink: imageLink,
+      imageLink: imageLink ?? this.imageLink,
       fullName: fullName ?? this.fullName,
       accountName: accountName ?? this.accountName,
       birthday: birthday ?? this.birthday,
       email: email ?? this.email,
       numberPhone: numberPhone ?? this.numberPhone,
       isLocked: isLocked,
+      addresses: addresses ?? this.addresses,
     );
   }
 }

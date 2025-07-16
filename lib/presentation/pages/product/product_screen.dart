@@ -23,11 +23,11 @@ class ProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.white, size: 32),
+          iconTheme: IconThemeData(color: Colors.white, size: 24),
           backgroundColor: AppThemes.primaryColor,
           title: Text(
             "Products",
-            style: AppTextStyle.withColor(AppTextStyle.h1, Colors.white),
+            style: AppTextStyle.withColor(AppTextStyle.subtitle, Colors.white),
           )),
       body: MultiBlocProvider(
         providers: [

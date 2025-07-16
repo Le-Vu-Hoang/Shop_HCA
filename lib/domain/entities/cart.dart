@@ -1,10 +1,10 @@
-class BrandEntity {
+class CartEntity {
   final String brandId;
   final String brandName;
   final String brandImage;
   final List<CartItemEntity> items;
 
-  BrandEntity({
+  CartEntity({
     required this.brandId,
     required this.brandName,
     required this.brandImage,

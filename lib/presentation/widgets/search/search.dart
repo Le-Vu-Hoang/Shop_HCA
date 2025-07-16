@@ -15,11 +15,11 @@ class Search extends StatelessWidget {
       ),
       child: TextField(
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 12),
+          contentPadding: EdgeInsets.symmetric(vertical: 14),
           hintText: 'Search...',
           hintStyle: AppTextStyle.withColor(AppTextStyle.textLarge, Colors.white),
           border: InputBorder.none,
-          prefixIcon: Icon(Icons.search, color: Colors.white),
+          prefixIcon: Icon(Icons.search, color: Colors.white, size: 24,),
         ),
         style: TextStyle(color: Colors.white),
       ),

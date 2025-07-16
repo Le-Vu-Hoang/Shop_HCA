@@ -1,5 +1,6 @@
-
 import 'package:e_commercial/domain/usecases/Auth/is_logged_in.dart';
+import 'package:e_commercial/domain/usecases/Cart/add_to_cart.dart';
+import 'package:e_commercial/domain/usecases/Cart/get_cart_items.dart';
 import 'package:get_it/get_it.dart';
 
 import '../domain/usecases/Address/add_new_address.dart';
@@ -23,25 +24,43 @@ import '../domain/usecases/SubCategory/get_by_category.dart';
 import '../domain/usecases/SubCategory/get_by_id.dart';
 
 Future<void> setupUseCases(GetIt sl) async {
+  //             AUTH USE CASES
   sl.registerLazySingleton(() => IsLoggedInUseCase());
   sl.registerLazySingleton(() => SignInUseCase());
   sl.registerLazySingleton(() => SignUpUseCase());
+  sl.registerLazySingleton(() => ChangePasswordUseCase());
+
+  //             USER USE CASES
   sl.registerLazySingleton(() => UpdateUserUseCase());
   sl.registerLazySingleton(() => GetUserInforUseCase());
-  sl.registerLazySingleton(() => ChangePasswordUseCase());
+
+  //             CATEGORY USE CASES
   sl.registerLazySingleton(() => GetAllCategoryUseCase());
+
+  //             SUBCATEGORY USE CASES
   sl.registerLazySingleton(() => SubGetAllByCateIdUSeCase());
   sl.registerLazySingleton(() => SubGetByIdUseCase());
+
+  //             PRODUCT USE CASES
   sl.registerLazySingleton(() => GetAllProductUseCase());
   sl.registerLazySingleton(() => GetAllProductByFilter());
   sl.registerLazySingleton(() => GetProductByIdUseCase());
+
+  //             PRODUCT_VARIANT USE CASES
   sl.registerLazySingleton(() => GetVariantByIdUseCase());
   sl.registerLazySingleton(() => GetVariantOfProductUseCase());
+
+  //             ORDER USE CASES
   sl.registerLazySingleton(() => CancelOrderUseCase());
   sl.registerLazySingleton(() => CreateOrderUseCase());
   sl.registerLazySingleton(() => GetAllOrderUseCase());
+
+  //             ADDRESS USE CASES
   sl.registerLazySingleton(() => AddNewAddressUseCase());
   sl.registerLazySingleton(() => GetAddressUseCase());
   sl.registerLazySingleton(() => UpdateAddressUseCase());
 
+  //             CART USE CASES
+  sl.registerLazySingleton(() => AddToCartUseCase());
+  sl.registerLazySingleton(() => GetCartItemsUseCase());
 }

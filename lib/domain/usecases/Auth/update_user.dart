@@ -18,7 +18,7 @@ class UpdateUserUseCase implements UseCase<Either<Failure, String>, UpdateUserPa
       if (params.avatarFile != null) {
         formData.files.add(
           MapEntry(
-            'image',
+            'images',
             await MultipartFile.fromFile(
               params.avatarFile!.path,
               filename: 'avatar.jpg',

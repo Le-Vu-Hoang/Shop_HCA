@@ -1,9 +1,11 @@
-import 'package:e_commercial/data/datasources/local/hive_service.dart';
 import 'package:e_commercial/presentation/blocs/user_infor/user_infor_state.dart';
 import 'package:e_commercial/presentation/widgets/loading/app_loading.dart';
+import 'package:e_commercial/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import '../../../injection/injection_container.dart';
+import '../../../routes/app_router.gr.dart';
 import '../../blocs/user_infor/user_infor_cubit.dart';
 import '../search/search.dart';
 
@@ -41,16 +43,17 @@ class Header extends StatelessWidget {
                   _avatar(state.user.imageLink),
                   const SizedBox(width: 12),
                   const Expanded(child: Search()),
-                  const SizedBox(width: 12),
                   IconButton(
-                    icon: const Icon(Icons.notifications,
-                        color: Colors.white, size: 32),
+                    icon: const Icon(Icons.message_outlined,
+                        color: Colors.white, size: 24),
                     onPressed: () => print('Notify button pressed'),
                   ),
                   IconButton(
                     icon: const Icon(Icons.shopping_cart,
-                        color: Colors.white, size: 32),
-                    onPressed: () {},
+                        color: Colors.white, size: 24),
+                    onPressed: () {
+                      sl<AppRouter>().push(CartRoute());
+                    },
                   ),
                 ],
               );

@@ -28,4 +28,18 @@ class AppLoading {
       _isDialogOpen = false;
     }
   }
+
+  static Widget overlay() {
+    return Container(
+      color: Colors.black.withOpacity(0.3),
+      child: Center(
+        child: Lottie.asset(
+          "assets/animations/Animation - loading.json",
+          width: 200,
+          height: 200,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
 }

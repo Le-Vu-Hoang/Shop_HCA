@@ -99,13 +99,13 @@ class TopSelling extends StatelessWidget {
                               Icon(
                                 Icons.star_outline_sharp,
                                 color: Colors.yellow[800],
-                                size: 24,
+                                size: 16,
                               ),
                               const SizedBox(width: 4),
                               Text(
                                 '5.0',
                                 style: AppTextStyle.withColor(
-                                    AppTextStyle.subtitle, Colors.black54),
+                                    AppTextStyle.textLarge, Colors.black54),
                               ),
                             ],
                           ),

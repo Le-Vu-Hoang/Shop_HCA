@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:e_commercial/core/constants/app_themes.dart';
+import 'package:e_commercial/presentation/pages/notification/notification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 
@@ -19,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
   int currentIndex = 0;
   final List<Widget> _pages = [
     const HomeScreen(),
-    CartScreen(),
+    NotificationScreen(),
     const ChatScreen(),
     ProfileScreen(),
   ];
@@ -46,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 GestureDetector(
                   onTap: () => setState(() => currentIndex = 1),
-                  child: Icon(Icons.shopping_cart, color: currentIndex == 1 ? AppThemes.primaryColor : Colors.grey, size: 30),
+                  child: Icon(Icons.notifications, color: currentIndex == 1 ? AppThemes.primaryColor : Colors.grey, size: 30),
                 ),
                 GestureDetector(
                   onTap: () => setState(() => currentIndex = 2),

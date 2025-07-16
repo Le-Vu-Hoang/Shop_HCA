@@ -1,4 +1,5 @@
 import 'package:e_commercial/core/constants/app_text_style.dart';
+import 'package:e_commercial/core/constants/app_themes.dart';
 import 'package:e_commercial/routes/app_router.dart';
 import 'package:e_commercial/routes/app_router.gr.dart';
 import 'package:flutter/material.dart';
@@ -107,13 +108,13 @@ class ProductListView extends StatelessWidget {
                                 Icon(
                                   Icons.star_outline_sharp,
                                   color: Colors.yellow[800],
-                                  size: 24,
+                                  size: 16,
                                 ),
                                 const SizedBox(width: 4),
                                 Text(
                                   '5.0',
                                   style: AppTextStyle.withColor(
-                                      AppTextStyle.subtitle, Colors.black),
+                                      AppTextStyle.textLarge, Colors.black),
                                 ),
                               ],
                             ),
@@ -124,8 +125,8 @@ class ProductListView extends StatelessWidget {
                           horizontal: 8.0, vertical: 8.0),
                       child: Text(
                         formatCurrency(product.averagePrice).toString(),
-                        style: AppTextStyle.withWeight(
-                            AppTextStyle.textLarge, FontWeight.w600),
+                        style: AppTextStyle.withColor(
+                            AppTextStyle.subtitle, AppThemes.primaryColor),
                       ),
                     ),
                   ],

@@ -6,6 +6,7 @@ import 'package:e_commercial/domain/usecases/Auth/update_user.dart';
 import 'package:e_commercial/presentation/blocs/profile/profile_event.dart';
 import 'package:e_commercial/presentation/blocs/profile/profile_state.dart';
 
+import '../../../core/errors/failure.dart';
 import '../../../data/models/user/user_model.dart';
 import '../../../injection/injection_container.dart';
 
@@ -17,24 +18,32 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     });
 
     on<UpdateProfile>((event, emit) async {
-      emit(ProfileLoading());
+      final currentUser = sl<HiveService>().getCurrentUser();
+      emit(ProfileLoading(ProfileLoaded(currentUser!)));
+
       await Future.delayed(Duration(seconds: 2));
-      var response = await sl<UpdateUserUseCase>().call(
+
+      final response = await sl<UpdateUserUseCase>().call(
         params: UpdateUserParams(
           user: event.params,
           avatarFile: event.avatarFile,
         ),
       );
-      response.fold(
-        (failure) {
-          emit(ProfileError(failure.message));
-        },
-        (success) async {
-          var user = UserModel.fromJson(event.params.toJson());
-          await sl<HiveService>().saveUser(LocalUserModel.fromUserModel(user));
-          emit(ProfileUpdated());
-        },
-      );
+
+      if (response.isLeft()) {
+        emit(ProfileError(response.swap().getOrElse(() => ServerFailure('Unknown')).message));
+        return;
+      }
+
+      final imageLinkToUse = event.avatarFile != null
+          ? event.params.imageLink
+          : currentUser.imageLink;
+
+      final updatedUser = event.params.copyWith(imageLink: imageLinkToUse);
+      await sl<HiveService>().saveUser(LocalUserModel.fromUserModel(updatedUser));
+
+      emit(ProfileUpdated());
     });
+
   }
 }

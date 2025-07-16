@@ -1,5 +1,6 @@
 import 'package:e_commercial/core/network/config/dio_client.dart';
 import 'package:e_commercial/core/network/service/address_api_service.dart';
+import 'package:e_commercial/core/network/service/cart_api_service.dart';
 import 'package:e_commercial/core/network/service/category_api_service.dart';
 import 'package:e_commercial/core/network/service/order_api_service.dart';
 import 'package:e_commercial/core/network/service/product_api_service.dart';
@@ -16,4 +17,5 @@ Future<void> setupServices(GetIt sl) async {
    sl.registerLazySingleton<SubCategoryApiService>(() => SubCategoryApiServiceImpl());
    sl.registerLazySingleton<OrderApiService>(() => OrderApiServiceImpl());
    sl.registerLazySingleton<AddressApiService>(() => AddressApiServiceImpl());
+   sl.registerLazySingleton<CartApiService>(() => CartApiServiceImpl());
 }

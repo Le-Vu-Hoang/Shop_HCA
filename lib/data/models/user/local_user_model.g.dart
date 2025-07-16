@@ -1,4 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
+
 part of 'local_user_model.dart';
 
 // **************************************************************************
@@ -24,13 +25,14 @@ class LocalUserModelAdapter extends TypeAdapter<LocalUserModel> {
       email: fields[5] as String,
       numberPhone: fields[6] as String?,
       isLocked: fields[7] as bool,
+      addresses: (fields[8] as List).cast<AddressModel>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, LocalUserModel obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -46,7 +48,9 @@ class LocalUserModelAdapter extends TypeAdapter<LocalUserModel> {
       ..writeByte(6)
       ..write(obj.numberPhone)
       ..writeByte(7)
-      ..write(obj.isLocked);
+      ..write(obj.isLocked)
+      ..writeByte(8)
+      ..write(obj.addresses);
   }
 
   @override

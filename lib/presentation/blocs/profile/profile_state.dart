@@ -4,7 +4,10 @@ abstract class ProfileState {}
 
 class ProfileInitial extends ProfileState {}
 
-class ProfileLoading extends ProfileState {}
+class ProfileLoading extends ProfileState {
+  final ProfileLoaded previous;
+  ProfileLoading(this.previous);
+}
 
 
 class ProfileLoaded extends ProfileState {

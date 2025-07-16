@@ -3,6 +3,13 @@ import 'package:e_commercial/domain/entities/address.dart';
 
 extension AddressXModel on AddressModel {
   AddressEntity toEntity() {
-    return AddressEntity(id: id, address: address, isDefault: isDefault);
+    return AddressEntity(
+        id: id,
+        address: address,
+        isDefault: isDefault,
+        ward: ward,
+        city: city,
+        country: country,
+        zipCode: zipCode);
   }
 }

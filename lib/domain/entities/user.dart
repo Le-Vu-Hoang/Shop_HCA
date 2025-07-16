@@ -1,3 +1,5 @@
+import 'address.dart';
+
 class UserEntity {
   final String id;
   final String? imageLink;
@@ -7,6 +9,7 @@ class UserEntity {
   final String email;
   final String? numberPhone;
   final bool isLocked;
+  final List<AddressEntity> addresses;
 
   UserEntity({
     required this.id,
@@ -17,6 +20,7 @@ class UserEntity {
     required this.email,
     this.numberPhone,
     required this.isLocked,
+    required this.addresses,
   });
 }
 

@@ -24,11 +24,11 @@ class HomeScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 30,),
+                SizedBox(height: 8,),
                 const Header(),
-                const SizedBox(height: 32),
+                const SizedBox(height: 12),
                 CategoryList(),
-                const SizedBox(height: 32),
+                const SizedBox(height: 16),
                 TopSelling(),
                 const SizedBox(height: 32),
                 NewIn(),

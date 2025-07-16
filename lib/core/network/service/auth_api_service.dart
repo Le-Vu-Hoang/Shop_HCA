@@ -107,7 +107,7 @@ class AuthApiServiceImpl implements AuthApiService {
               'Content-Type': 'multipart/form-data',
             },
           ));
-      return Right(response.data['message'] as String);
+      return Right(response.data);
     } on DioException catch (e) {
       return Left(handleDioException(e, contextMessage: 'Update user failed'));
     } catch (e) {

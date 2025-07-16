@@ -15,7 +15,7 @@ class DioClient {
         baseUrl: dotenv.env["BASE_URL"] ?? (throw Exception("BASE_URL not set in .env")),
         responseType: ResponseType.json,
         sendTimeout: const Duration(seconds: 10),
-        receiveTimeout: const Duration(seconds: 10)
+        receiveTimeout: const Duration(seconds: 30)
     ),
   )..interceptors.addAll([
     LoggerInterceptor(),

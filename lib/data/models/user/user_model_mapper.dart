@@ -12,6 +12,7 @@ extension UserModelX on UserModel {
       email: email,
       numberPhone: numberPhone,
       isLocked: isLocked,
+      addresses: addresses,
     );
   }
 }

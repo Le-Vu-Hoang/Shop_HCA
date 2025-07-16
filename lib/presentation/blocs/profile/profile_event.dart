@@ -11,5 +11,5 @@ class UpdateProfile extends ProfileEvent {
   final UserModel params;
   final XFile? avatarFile;
 
-  UpdateProfile(this.params, {this.avatarFile});
+  UpdateProfile(this.params, this.avatarFile);
 }

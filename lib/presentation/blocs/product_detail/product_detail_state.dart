@@ -19,3 +19,9 @@ class ProductDetailError extends ProductDetailState {
 
   ProductDetailError({required this.errorMessage});
 }
+
+class ShowVariantDialog extends ProductDetailState {
+  final ProductDetailEntity product;
+  ShowVariantDialog({required this.product});
+}
+

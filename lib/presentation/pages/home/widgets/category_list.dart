@@ -128,7 +128,7 @@ class CategoryList extends StatelessWidget {
           );
         },
         separatorBuilder: (BuildContext context, int index) =>
-        const SizedBox(width: 15),
+        const SizedBox(width: 8),
       ),
     );
   }

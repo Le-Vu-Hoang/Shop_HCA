@@ -7,6 +7,7 @@ class ApiPaths {
   static const subCategory = _SubCategoryPaths();
   static const notification = _NotificationPaths();
   static const address = _AddressPaths();
+  static const cart = _CartPaths();
 }
 
 class _AuthPaths {
@@ -71,4 +72,13 @@ class _AddressPaths {
   String get addAddress => '/api/user/add-shipping-address';
   String get updateAddress => '/api/user/update-shipping-address';
   String get deleteAddress => '/api/user/delete-address';
+}
+
+class _CartPaths {
+  const _CartPaths();
+
+  String get addToCart => '/api/user/add-to-cart';
+  String get getAllCart => '/api/user/get-cart';
+  String get updateCart => '/api/user/update-cart';
+  String get deleteCart => '/api/user/delete-cart';
 }
